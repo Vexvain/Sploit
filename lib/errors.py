@@ -1,4 +1,4 @@
-class AutoSploitAPIConnectionError(Exception): pass
+class SploitAPIConnectionError(Exception): pass
 
 
 class NmapNotFoundException(Exception): pass
