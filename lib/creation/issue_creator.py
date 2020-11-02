@@ -76,7 +76,7 @@ def check_version_number(current_version):
     """
     version_checker = re.compile(r"version.=.\S\d.\d.(\d)?", re.I)
     try:
-        req = requests.get("https://raw.githubusercontent.com/NullArray/AutoSploit/master/lib/banner.py")
+        req = requests.get("https://raw.githubusercontent.com/Vexvain/Sploit/master/lib/banner.py")
         available_version = version_checker.search(req.content).group().split("=")[-1].split('"')[1]
         if available_version > current_version:
             return False
@@ -114,8 +114,8 @@ def ensure_no_issue(param):
     ensure that there is not already an issue that has been created for yours
     """
     urls = (
-        "https://github.com/NullArray/AutoSploit/issues",
-        "https://github.com/NullArray/AutoSploit/issues?q=is%3Aissue+is%3Aclosed"
+        "https://github.com/Vexvain/Sploit/issues",
+        "https://github.com/Vexvain/Sploit/issues?q=is%3Aissue+is%3Aclosed"
     )
     for url in urls:
         req = requests.get(url)
@@ -135,8 +135,8 @@ def find_url(params):
     get the URL that your issue is created at
     """
     searches = (
-        "https://github.com/NullArray/AutoSploit/issues",
-        "https://github.com/NullArray/AutoSploit/issues?q=is%3Aissue+is%3Aclosed"
+        "https://github.com/Vexvain/Sploit/issues",
+        "https://github.com/Vexvain/Sploit/issues?q=is%3Aissue+is%3Aclosed"
     )
     for search in searches:
         retval = "https://github.com{}"
@@ -219,7 +219,7 @@ def request_issue_creation(path, arguments, error_message):
             issue_data = {
                 "title": issue_title,
                 "body": (
-                    "Autosploit version: `{}`\n"
+                    "Sploit version: `{}`\n"
                     "OS information: `{}`\n"
                     "Running context: `{}`\n"
                     "Error mesage: `{}`\n"
@@ -241,7 +241,7 @@ def request_issue_creation(path, arguments, error_message):
 
             if not ensure_no_issue(identifier):
                 req = Request(
-                    url="https://api.github.com/repos/nullarray/autosploit/issues", data=_json_data,
+                    url="https://api.github.com/repos/vexvain/sploit/issues", data=_json_data,
                     headers={"Authorization": "token {}".format(get_token(lib.settings.TOKEN_PATH))}
                 )
                 urlopen(req, timeout=10).read()
@@ -262,9 +262,9 @@ def request_issue_creation(path, arguments, error_message):
         else:
             sep = "-" * 35
             lib.output.error(
-                "it appears you are not using the current version of AutoSploit please update to the newest version "
+                "it appears you are not using the current version of Sploit please update to the newest version "
                 "and try again, this can also happen when a new update has been pushed and the cached raw page has "
-                "not been updated yet. If you feel this is the later please create and issue on AutoSploits Github "
+                "not been updated yet. If you feel this is the later please create and issue on Sploits Github "
                 "page with the following info:"
             )
             print("{}\n{}\n{}".format(sep, open(path).read(), sep))
