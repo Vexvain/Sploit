@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-#
-# this script dryruns autosploit. That's it, nothing special just a dry run
-#
+# This script dryruns Sploit
 
 
 if [[ $# -lt 1 ]]; then
@@ -20,11 +18,11 @@ TIMESTAMP=`date +%s`
 
 
 if [ ! $WHITELIST ]; then
-  echo "executing: python autosploit.py -s -c -q \"${SEARCH_QUERY}\" --overwrite -C \"msf_autorun_${TIMESTAMP}\" $LHOST $LPORT --exploit-file-to-use etc/json/default_modules.json --dry-run -e"
+  echo "executing: python sploit.py -s -c -q \"${SEARCH_QUERY}\" --overwrite -C \"msf_autorun_${TIMESTAMP}\" $LHOST $LPORT --exploit-file-to-use etc/json/default_modules.json --dry-run -e"
 
-  python autosploit.py -s -c -q "${SEARCH_QUERY}" --overwrite -C "msf_autorun_${TIMESTAMP}" $LHOST $LPORT --exploit-file-to-use etc/json/default_modules.json --dry-run -e
+  python sploit.py -s -c -q "${SEARCH_QUERY}" --overwrite -C "msf_autorun_${TIMESTAMP}" $LHOST $LPORT --exploit-file-to-use etc/json/default_modules.json --dry-run -e
 else
-  echo "executing: python autosploit.py -s -c -q \"${SEARCH_QUERY}\" --overwrite --whitelist $WHITELIST -e -C \"msf_autorun_${TIMESTAMP}\" $LHOST $LPORT --exploit-file-to-use etc/json/default_modules.json --dry-run -e"
+  echo "executing: python sploit.py -s -c -q \"${SEARCH_QUERY}\" --overwrite --whitelist $WHITELIST -e -C \"msf_autorun_${TIMESTAMP}\" $LHOST $LPORT --exploit-file-to-use etc/json/default_modules.json --dry-run -e"
 
-  python autosploit.py -s -c -q "${SEARCH_QUERY}" --overwrite --whitelist $WHITELIST -e -C "msf_autorun_${TIMESTAMP}" $LHOST $LPORT --exploit-file-to-use etc/json/default_modules.json --dry-run -e
+  python sploit.py -s -c -q "${SEARCH_QUERY}" --overwrite --whitelist $WHITELIST -e -C "msf_autorun_${TIMESTAMP}" $LHOST $LPORT --exploit-file-to-use etc/json/default_modules.json --dry-run -e
 fi;
