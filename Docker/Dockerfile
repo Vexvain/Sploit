@@ -10,8 +10,8 @@ RUN apt-get update && \
 					apache2
 
 RUN chmod +x entrypoint.sh && \
-	git clone https://github.com/NullArray/AutoSploit.git && \
-	pip install -r AutoSploit/requirements.txt
+	git clone https://github.com/Vexvain/Sploit.git && \
+	pip install -r Sploit/requirements.txt
 	
 EXPOSE 4444
 CMD [ "./entrypoint.sh" ]
