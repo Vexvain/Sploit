@@ -1,7 +1,7 @@
 import requests
 
 import lib.settings
-from lib.errors import AutoSploitAPIConnectionError
+from lib.errors import SploitAPIConnectionError
 from lib.settings import (
     HOST_FILE,
     API_URLS,
@@ -42,4 +42,4 @@ class CensysAPIHook(object):
             write_to_file(discovered_censys_hosts, self.host_file, mode=self.save_mode)
             return True
         except Exception as e:
-            raise AutoSploitAPIConnectionError(str(e))
+            raise SploitAPIConnectionError(str(e))
