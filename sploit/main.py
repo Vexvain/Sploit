@@ -4,8 +4,8 @@ import ctypes
 import psutil
 import platform
 
-from lib.cmdline.cmd import AutoSploitParser
-from lib.term.terminal import AutoSploitTerminal
+from lib.cmdline.cmd import SploitParser
+from lib.term.terminal import SploitTerminal
 from lib.creation.issue_creator import (
     request_issue_creation,
     hide_sensitive
@@ -44,10 +44,10 @@ def main():
         if not is_admin:
             close("must have admin privileges to run")
 
-        opts = AutoSploitParser().optparser()
+        opts = SploitParser().optparser()
 
         logo()
-        info("welcome to autosploit, give us a little bit while we configure")
+        info("welcome to sploit, give us a little bit while we configure")
         misc_info("checking your running platform")
         platform_running = platform.system()
         misc_info("checking for disabled services")
@@ -72,12 +72,12 @@ def main():
                             if "linux" in platform_running.lower():
                                 cmdline("{} linux".format(START_SERVICES_PATH))
                             else:
-                                close("your platform is not supported by AutoSploit at this time", status=2)
+                                close("your platform is not supported by Sploit at this time", status=2)
 
                             # moving this back because it was funky to see it each run
                             info("services started successfully")
                         # this tends to show up when trying to start the services
-                        # I'm not entirely sure why, but this fixes it
+                        # this fixes it
                         except psutil.NoSuchProcess:
                             pass
                     else:
@@ -85,7 +85,7 @@ def main():
                         if "darwin" in platform_running.lower():
                             process_start_command = "`brew services start {}`"
                         close(
-                            "service {} is required to be started for autosploit to run successfully (you can do it manually "
+                            "service {} is required to be started for sploit to run successfully (you can do it manually "
                             "by using the command {}), exiting".format(
                                 service.title(), process_start_command.format(service)
                             )
@@ -96,7 +96,7 @@ def main():
         if len(sys.argv) > 1:
             info("attempting to load API keys")
             loaded_tokens = load_api_keys()
-            AutoSploitParser().parse_provided(opts)
+            SploitParser().parse_provided(opts)
 
             if not opts.exploitFile:
                 misc_info("checking if there are multiple exploit files")
@@ -107,13 +107,13 @@ def main():
                     len(loaded_exploits),
                     opts.exploitFile))
 
-            AutoSploitParser().single_run_args(opts, loaded_tokens, loaded_exploits)
+            SploitParser().single_run_args(opts, loaded_tokens, loaded_exploits)
         else:
             misc_info("checking if there are multiple exploit files")
             loaded_exploits = load_exploits(EXPLOIT_FILES_PATH)
             info("attempting to load API keys")
             loaded_tokens = load_api_keys()
-            terminal = AutoSploitTerminal(loaded_tokens, loaded_exploits)
+            terminal = SploitTerminal(loaded_tokens, loaded_exploits)
             terminal.terminal_main_display(loaded_tokens)
     except Exception as e:
         global stop_animation
@@ -123,9 +123,9 @@ def main():
         import traceback
 
         print(
-            "\033[31m[!] AutoSploit has hit an unhandled exception: '{}', "
+            "\033[31m[!] Sploit has hit an unhandled exception: '{}', "
             "in order for the developers to troubleshoot and repair the "
-            "issue AutoSploit will need to gather your OS information, "
+            "issue Sploit will need to gather your OS information, "
             "current arguments, the error message, and a traceback. "
             "None of this information can be used to identify you in any way\033[0m".format(str(e))
         )
