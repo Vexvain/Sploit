@@ -1,13 +1,10 @@
 #!/bin/bash
 
-#
-# this script quickly runs a query list of search keywords provided from a file on ALL of the
-# available APIs. (Censys, Zoomeye, and Shodan) from there it will save all of them to the hosts.txt
-# file and you can do as you will with that
-#
+# This script quickly runs a query list of search keywords provided from a file on ALL of the
+# available APIs. (Censys, Zoomeye, and Shodan.) It will save all of them to hosts.txt
 
 function doQuick() {
-  for item in $(cat $1); do python autosploit.py -A -a -f etc/json/default_modules.json -q $item; done
+  for item in $(cat $1); do python sploit.py -A -a -f etc/json/default_modules.json -q $item; done
 }
 
 function helpPage() {
