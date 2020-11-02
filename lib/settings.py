@@ -21,7 +21,7 @@ import lib.banner
 import lib.jsonize
 
 
-class AutoSploitCompleter(object):
+class SploitCompleter(object):
 
     """
     object to create an auto completer for the terminal
@@ -64,12 +64,12 @@ help/?                  Display this help
 CUR_DIR = "{}".format(os.getcwd())
 
 # home
-HOME = "{}/.autosploit_home".format(os.path.expanduser("~"))
+HOME = "{}/.sploit_home".format(os.path.expanduser("~"))
 
 # backup the current hosts file
 HOST_FILE_BACKUP = "{}/backups".format(HOME)
 
-# autosploit command history file path
+# sploit command history file path
 HISTORY_FILE_PATH = "{}/.history".format(HOME)
 
 # we'll save the scans xml output for future use
@@ -109,13 +109,13 @@ USAGE_AND_LEGAL_PATH = "{}/etc/text_files/general".format(CUR_DIR)
 START_SERVICES_PATH = "{}/etc/scripts/start_services.sh".format(CUR_DIR)
 
 # path where we will keep the rc scripts
-RC_SCRIPTS_PATH = "{}/autosploit_out/".format(HOME)
+RC_SCRIPTS_PATH = "{}/sploit_out/".format(HOME)
 
 # path to the file that will contain our query
 QUERY_FILE_PATH = tempfile.NamedTemporaryFile(delete=False).name
 
 # default HTTP User-Agent
-DEFAULT_USER_AGENT = "AutoSploit/{} (Language=Python/{}; Platform={})".format(
+DEFAULT_USER_AGENT = "Sploit/{} (Language=Python/{}; Platform={})".format(
     lib.banner.VERSION, sys.version.split(" ")[0], platform.platform().split("-")[0]
 )
 
@@ -123,7 +123,7 @@ DEFAULT_USER_AGENT = "AutoSploit/{} (Language=Python/{}; Platform={})".format(
 PLATFORM_PROMPT = "\n{}@\033[36mPLATFORM\033[0m$ ".format(getpass.getuser())
 
 # the prompt that will be used most of the time
-AUTOSPLOIT_PROMPT = "\033[31m{}\033[0m@\033[36mautosploit\033[0m# ".format(getpass.getuser())
+SPLOIT_PROMPT = "\033[31m{}\033[0m@\033[36msploit\033[0m# ".format(getpass.getuser())
 
 # all the paths to the API tokens
 API_KEYS = {
@@ -148,10 +148,10 @@ MSF_LAUNCHED = False
 TOKEN_PATH = "{}/etc/text_files/auth.key".format(CUR_DIR)
 
 # location of error files
-ERROR_FILES_LOCATION = "{}/.autosploit_errors".format(HOME)
+ERROR_FILES_LOCATION = "{}/.sploit_errors".format(HOME)
 
 # terminal options
-AUTOSPLOIT_TERM_OPTS = {
+SPLOIT_TERM_OPTS = {
     1: "usage and legal", 2: "gather hosts", 3: "custom hosts",
     4: "add single host", 5: "view gathered hosts", 6: "exploit gathered hosts",
     99: "quit"
@@ -196,7 +196,7 @@ def auto_completer(keywords):
     """
     function to initialize the auto complete utility
     """
-    completer = AutoSploitCompleter(keywords)
+    completer = SploitCompleter(keywords)
     readline.set_completer(completer.complete_text)
     readline.parse_and_bind('tab: complete')
 
