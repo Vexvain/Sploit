@@ -17,7 +17,7 @@ except:
     input = raw_input
 
 
-class AutoSploitTerminal(object):
+class SploitTerminal(object):
 
     """
     class object for the main terminal of the program
@@ -65,7 +65,7 @@ class AutoSploitTerminal(object):
         self.quit_terminal = False
         self.tokens = tokens
         self.history_dir = "{}/{}".format(lib.settings.HISTORY_FILE_PATH, datetime.date.today())
-        self.full_history_path = "{}/autosploit.history".format(self.history_dir)
+        self.full_history_path = "{}/sploit.history".format(self.history_dir)
         self.modules = modules
         try:
             self.loaded_hosts = open(lib.settings.HOST_FILE).readlines()
@@ -122,7 +122,7 @@ class AutoSploitTerminal(object):
         """
         get the provided choice and return a tuple of options and the choice
         """
-        original_choice = raw_input(lib.settings.AUTOSPLOIT_PROMPT)
+        original_choice = raw_input(lib.settings.SPLOIT_PROMPT)
         try:
             choice_checker = original_choice.split(" ")[0]
         except:
@@ -296,7 +296,7 @@ class AutoSploitTerminal(object):
                         proxy=proxy,
                         agent=agent
                     ).search()
-                except (lib.errors.AutoSploitAPIConnectionError, Exception) as e:
+                except (lib.errors.SploitAPIConnectionError, Exception) as e:
                     lib.settings.stop_animation = True
                     lib.output.error("error searching API: '{}', error message: '{}'".format(api, str(e)))
         lib.settings.stop_animation = True
@@ -399,7 +399,7 @@ class AutoSploitTerminal(object):
 
             try:
                 if sort_mods.lower().startswith("y"):
-                    mods_to_use = lib.exploitation.exploiter.AutoSploitExploiter(
+                    mods_to_use = lib.exploitation.exploiter.SploitExploiter(
                         None, None
                     ).sort_modules_by_query()
                 else:
@@ -414,7 +414,7 @@ class AutoSploitTerminal(object):
                     lib.output.misc_info(mod.strip())
             lib.output.prompt("press enter to start exploitation phase")
             lib.output.info("starting exploitation phase")
-            lib.exploitation.exploiter.AutoSploitExploiter(
+            lib.exploitation.exploiter.SploitExploiter(
                 configuration=workspace_info[0:3],
                 all_modules=mods_to_use,
                 hosts=open(lib.settings.HOST_FILE).readlines(),
@@ -430,7 +430,7 @@ class AutoSploitTerminal(object):
         -----------
         Load a custom exploit file, this is useful to attack already gathered hosts
         instead of trying to gather them again from the backup host files inside
-        of the `.autosploit_home` directory
+        of the `.sploit_home` directory
 
         Parameters:
         -----------
@@ -733,9 +733,9 @@ class AutoSploitTerminal(object):
                 import lib.creation.issue_creator
 
                 print(
-                    "\033[31m[!] AutoSploit has hit an unhandled exception: '{}', "
+                    "\033[31m[!] Sploit has hit an unhandled exception: '{}', "
                     "in order for the developers to troubleshoot and repair the "
-                    "issue AutoSploit will need to gather your OS information, "
+                    "issue Sploit will need to gather your OS information, "
                     "current arguments, the error message, and a traceback. "
                     "None of this information can be used to identify you in any way\033[0m".format(str(e))
                 )
