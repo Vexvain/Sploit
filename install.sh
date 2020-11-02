@@ -1,13 +1,16 @@
 #!/bin/bash
 
-echo "  ____  __ __  ______   ___   _____ ____  _       ___  ____  ______ ";
-echo " /    ||  |  ||      | /   \ / ___/|    \| |     /   \|    ||      |";
-echo "|  o  ||  |  ||      ||     (   \_ |  o  ) |    |     ||  | |      |";
-echo "|     ||  |  ||_|  |_||  O  |\__  ||   _/| |___ |  O  ||  | |_|  |_|";
-echo "|  _  ||  :  |  |  |  |     |/  \ ||  |  |     ||     ||  |   |  |  ";
-echo "|  |  ||     |  |  |  |     |\    ||  |  |     ||     ||  |   |  |  ";
-echo "|__|__| \__,_|  |__|   \___/  \___||__|  |_____| \___/|____|  |__|  ";
-echo "                                                                    ";
+
+echo "  (    (    (        )  (";            
+echo "  )\ ) )\ ) )\ )  ( /(  )\ )  *   )";  
+echo "  (()/((()/((()/(  )\())(()/(  )  /( ";  
+echo "  /(_))/(_))/(_))((_)\  /(_))( )(_)) "; 
+echo "  (_)) (_)) (_))    ((_)(_)) (_(_()) ";  
+echo "  / __|| _ \| |    / _ \|_ _||_   _| ";  
+echo "  \__ \|  _/| |__ | (_) || |   | | ";    
+echo "  |___/|_|  |____| \___/|___|  |_| ";    
+                                    
+
 
 function installDebian () {
     sudo apt-get update;
@@ -88,7 +91,7 @@ function install () {
             installOSX;
             ;;
         *)
-            echo "Unable to detect an operating system that is compatible with AutoSploit...";
+            echo "Unable to detect an operating system that is compatible with Sploit...";
             ;;
     esac
     echo "";
