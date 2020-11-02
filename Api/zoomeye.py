@@ -5,7 +5,7 @@ import json
 import requests
 
 from lib.settings import start_animation
-from lib.errors import AutoSploitAPIConnectionError
+from lib.errors import SploitAPIConnectionError
 from lib.settings import (
     API_URLS,
     HOST_FILE,
@@ -85,5 +85,5 @@ class ZoomEyeAPIHook(object):
             write_to_file(discovered_zoomeye_hosts, self.host_file, mode=self.save_mode)
             return True
         except Exception as e:
-            raise AutoSploitAPIConnectionError(str(e))
+            raise SploitAPIConnectionError(str(e))
 
