@@ -54,7 +54,7 @@ def load_exploits(path, node="exploits"):
         while not selected:
             for i, f in enumerate(file_list, start=1):
                 print("{}. '{}'".format(i, f[:-5]))
-            action = raw_input(lib.settings.AUTOSPLOIT_PROMPT)
+            action = raw_input(lib.settings.SPLOIT_PROMPT)
             try:
                 selected_file = file_list[int(action) - 1]
                 selected = True
