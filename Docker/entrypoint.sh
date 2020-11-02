@@ -2,6 +2,6 @@
 
 /etc/init.d/postgresql start
 /etc/init.d/apache2 start
-cd AutoSploit/
+cd Sploit/
 
-python autosploit.py
+python sploit.py
