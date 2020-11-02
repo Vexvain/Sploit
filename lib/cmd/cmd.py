@@ -12,10 +12,10 @@ import api_calls.zoomeye
 import lib.exploitation.exploiter
 
 
-class AutoSploitParser(argparse.ArgumentParser):
+class SploitParser(argparse.ArgumentParser):
 
     def __init__(self):
-        super(AutoSploitParser, self).__init__()
+        super(SploitParser, self).__init__()
 
     @staticmethod
     def optparser():
@@ -25,7 +25,7 @@ class AutoSploitParser(argparse.ArgumentParser):
         """
 
         parser = argparse.ArgumentParser(
-            usage="python autosploit.py -c[z|s|a] -q QUERY [-O|A]\n"
+            usage="python sploit.py -c[z|s|a] -q QUERY [-O|A]\n"
                   "{spacer}[-C WORKSPACE LHOST LPORT] [-e] [--whitewash PATH] [-H]\n"
                   "{spacer}[--ruby-exec] [--msf-path] PATH [-E EXPLOIT-FILE-PATH]\n"
                   "{spacer}[--rand-agent] [--proxy PROTO://IP:PORT] [-P AGENT] [-D QUERY,QUERY,..]".format(
@@ -69,7 +69,7 @@ class AutoSploitParser(argparse.ArgumentParser):
         exploit.add_argument("-d", "--dry-run", action="store_true", dest="dryRun",
                              help="msfconsole will never be called when this flag is passed")
         exploit.add_argument("-f", "--exploit-file-to-use", metavar="PATH", dest="exploitFile",
-                             help="Run AutoSploit with provided exploit JSON file.")
+                             help="Run Sploit with provided exploit JSON file.")
         exploit.add_argument("-H", "--is-honeypot", type=float, default=1000, dest="checkIfHoneypot", metavar="HONEY-SCORE",
                              help="Determine if the host is a honeypot or not")
 
@@ -226,7 +226,7 @@ class AutoSploitParser(argparse.ArgumentParser):
                 check_pot = True
             else:
                 check_pot = False
-            lib.exploitation.exploiter.AutoSploitExploiter(
+            lib.exploitation.exploiter.SploitExploiter(
                 opt.msfConfig,
                 loaded_modules,
                 hosts,
